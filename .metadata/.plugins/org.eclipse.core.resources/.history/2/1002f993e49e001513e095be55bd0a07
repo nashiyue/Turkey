@@ -1,0 +1,16 @@
+package turkey.core.definition;
+
+public class Task {
+	//目标节点
+	private String targetDes;
+	//实际发送到的节点
+	private String realDes;
+	
+	private String jobId;
+	
+	private String jarName;
+	
+	private String mainClassName;
+	
+	
+}

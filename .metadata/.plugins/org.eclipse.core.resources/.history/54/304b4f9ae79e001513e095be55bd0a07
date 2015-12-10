@@ -1,0 +1,19 @@
+package turkey.core.task;
+
+public class DefaultTask extends Task{
+	private DefaultTask instance;
+	
+	public DefaultTask(String jobId,String realDes,String jarName,String mainClassName){
+		this();
+		this.setJobId(jobId);
+		this.setRealDes(realDes);
+		this.setJarName(jarName);
+		this.setMainClassName(mainClassName);
+	}
+	
+	private DefaultTask(){
+		this.setParams(null);
+		this.setUpload(true);
+		this.setTargetDes(null);
+	}
+}

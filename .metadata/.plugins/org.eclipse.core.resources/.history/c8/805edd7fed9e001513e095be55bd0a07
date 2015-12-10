@@ -1,0 +1,12 @@
+package turkey.client.utils;
+
+public class Utils {
+	
+	public static String getCommitId(){
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getCommitId());
+	}
+}

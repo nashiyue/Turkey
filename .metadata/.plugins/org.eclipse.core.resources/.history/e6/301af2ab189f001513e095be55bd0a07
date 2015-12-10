@@ -1,0 +1,44 @@
+package turkey.client.net;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import turkey.core.utils.Utils;
+
+public class FileThread extends Thread{
+	private String commitId;
+	private String server;
+	private int port;
+	private String path;
+	
+	public FileThread(String commitId, String server, int port, String path) {
+		this.commitId = commitId;
+		this.server = server;
+		this.port = port;
+		this.path = path;
+	}
+	
+	public FileThread(String server,int port,String path) {
+		this.commitId = Utils.getCommitId();
+		if(this.commitId == null){
+			System.out.println("commitId == null reset");
+			commitId=Utils.formatDate();
+		}
+		this.server = server;
+		this.port = port;
+		this.path = path;
+	}
+	
+	@Override
+	public void run() {
+		try {
+			Socket socket = new Socket(server, port);
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

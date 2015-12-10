@@ -1,0 +1,20 @@
+package turkey.client.net;
+
+import turkey.core.utils.Utils;
+
+public class Client {
+	
+	private String host;
+	private int port;
+	private String xml;
+	private String jar;
+	
+	public void commit(){
+		String commiteId = Utils.getCommitId();
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	}
+}

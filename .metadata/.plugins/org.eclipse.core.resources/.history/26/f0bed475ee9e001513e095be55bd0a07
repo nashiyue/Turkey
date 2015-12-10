@@ -1,0 +1,23 @@
+package turkey.client.utils;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class Utils {
+	
+	public static String getCommitId(){
+		try {
+//			String localName = InetAddress.getLocalHost().getHostName();
+			String localIp = InetAddress.getLocalHost().getHostAddress();
+//			return localName+"="+localIp;
+			return localIp;
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(getCommitId());
+	}
+}

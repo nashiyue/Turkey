@@ -1,0 +1,51 @@
+package turkey.client.net;
+
+import turkey.core.utils.Utils;
+
+public class Client {
+	
+	private String host;
+	private int port;
+	private String xml;
+	private String jar;	
+	
+	public Client(String host, int port, String xml, String jar) {
+		this.host = host;
+		this.port = port;
+		this.xml = xml;
+		this.jar = jar;
+	}
+
+	public void commit(){
+		String commitId = Utils.getCommitId();
+		if(commitId == null){
+			System.out.println("CommiteId is null");
+		}
+		else{
+			System.out.println("CommitedId:"+commitId);
+			FileThread jarThread = new FileThread(commitId, host, port, jar);
+			FileThread xmlThread = new FileThread(commitId, host, port, xml);
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		if(args.length != 4){
+			System.err.println("Args length is error: need 4 given "+args.length);
+			System.err.println("Input: host port xmlPath jarPath");
+			return;
+		}
+		String host = args[0];
+		int port = 8080;
+		try {			
+			port = Integer.valueOf(args[1]);
+		} catch (NumberFormatException e) {
+			System.out.println("Port must be an integer!");
+			return;
+		}
+		String xml = args[2];
+		String jar = args[3];
+		Client client = new Client(host, port, xml, jar);
+		client.commit();
+	}
+}

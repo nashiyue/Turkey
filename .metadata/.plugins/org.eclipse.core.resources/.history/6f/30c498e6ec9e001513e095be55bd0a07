@@ -1,0 +1,18 @@
+package turkey.client.net;
+
+public class FileThread {
+	private String commitId;
+	private String server;
+	private int port;
+	private String path;
+	
+	public FileThread(String commitId, String server, int port, String path) {
+		this.commitId = commitId;
+		this.server = server;
+		this.port = port;
+		this.path = path;
+	}
+	
+	
+	
+}

@@ -1,0 +1,6 @@
+package turkey.core.definition;
+
+public class Task {
+	private String targetDes;
+	private String realDes;
+}

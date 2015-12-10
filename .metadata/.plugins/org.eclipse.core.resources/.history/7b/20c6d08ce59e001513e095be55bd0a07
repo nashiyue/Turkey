@@ -1,0 +1,23 @@
+package turkey.core.definition;
+
+import java.util.List;
+
+public class Task {
+	
+	//目标节点
+	private String targetDes;
+	//实际发送到的节点
+	private String realDes;
+	//该Task 归属的Job
+	private String jobId;
+	//运行的jar包名称
+	private String jarName;
+	//主类的包名+类名
+	private String mainClassName;
+	//附件的参数列表
+	private List<String> params;
+	//Task运行完毕的结果是否上传
+	private boolean isUpload;
+	
+	
+}

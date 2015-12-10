@@ -1,0 +1,88 @@
+package turkey.client.net;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class FileThread extends Thread{
+	private String commitId;
+	private String server;
+	private int port;
+	private String path;
+	private boolean isHead;
+	private boolean isFinish;
+	
+	public FileThread(String commitId, String server, int port, String path) {
+		this.commitId = commitId;
+		this.server = server;
+		this.port = port;
+		this.path = path;
+		this.isFinish = false;
+		this.isHead = false;
+	}
+	
+	public FileThread(String commitId, String server, int port, String path,boolean isHead) {
+		this.commitId = commitId;
+		this.server = server;
+		this.port = port;
+		this.path = path;
+		this.isFinish = false;
+		this.isHead = isHead;
+	}
+	
+	
+	
+	public boolean isFinished(){
+		return isFinish;
+	}
+	
+	@Override
+	public void run() {
+		Socket socket = null;
+		DataOutputStream outputStream = null;
+		FileInputStream inputStream = null;
+		try {
+			socket = new Socket(server, port);
+			File file = new File(path);
+			outputStream = new DataOutputStream(socket.getOutputStream());
+			//先写commitId
+			outputStream.writeUTF(commitId);
+			outputStream.flush();
+			//再写文件名称
+			outputStream.writeUTF(file.getName());
+			outputStream.flush();
+			//开始写文件的内容
+			inputStream = new FileInputStream(file);
+			int len = -1;
+			byte[] buffer = new byte[8096];
+			while(true){
+				len = inputStream.read(buffer);
+				if(len < 0){
+					break;
+				}
+				else{
+					outputStream.write(buffer, 0, len);
+				}
+			}
+			System.out.println("Client send finish..."+path);
+			isFinish = true;
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				inputStream.close();
+				outputStream.flush();
+				outputStream.close();
+				socket.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

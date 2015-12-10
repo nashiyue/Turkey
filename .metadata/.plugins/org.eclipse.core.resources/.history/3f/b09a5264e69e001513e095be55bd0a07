@@ -1,0 +1,5 @@
+package turkey.core.task;
+
+public class DefaultTask extends Task{
+	
+}

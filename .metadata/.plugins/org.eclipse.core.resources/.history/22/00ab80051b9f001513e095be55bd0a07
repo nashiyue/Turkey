@@ -1,0 +1,24 @@
+package turkey.client.net;
+
+import turkey.core.utils.Utils;
+
+public class Client {
+	
+	private String host;
+	private int port;
+	private String xml;
+	private String jar;
+	
+	public void commit(){
+		String commiteId = Utils.getCommitId();
+		
+	}
+	
+	public static void main(String[] args) {
+		if(args.length != 4){
+			System.err.println("Args length is error: need 4 given "+args.length);
+			return;
+		}
+		
+	}
+}
